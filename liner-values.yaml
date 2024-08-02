@@ -1,0 +1,19 @@
+langfuse:
+  nextauth:
+    url: https://dev-langfuse.getliner.com
+    secret: EuJojExDsvUGP^F5s4yY
+    salt: Ra5onZY38Y%hCmIPWRFn
+  telemetryEnabled: False
+
+ingress:
+  enabled: True
+  annotations:
+    ingress.gcp.kubernetes.io/pre-shared-cert: "internal-2-wildcard-getliner-com"
+    kubernetes.io/ingress.class: "gce-internal"
+    kubernetes.io/ingress.allow-http: "true"
+    kubernetes.io/ingress.regional-static-ip-name: "langfuse-static-ip"
+  hosts:
+    - host: dev-langfuse.getliner.com
+      paths:
+        - path: /
+          pathType: Prefix
